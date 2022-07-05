@@ -1,0 +1,14 @@
+
+.DS_Store
+
+blood-alcohol-approximator/obj/
+
+blood-alcohol-approximator/bin/Debug/
+
+DotNet-Camunda8-getting-started/bin/Debug/
+
+DotNet-Camunda8-getting-started/obj/
+
+test-bac-approximator/bin/Debug/
+
+test-bac-approximator/obj/

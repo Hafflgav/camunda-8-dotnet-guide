@@ -1,0 +1,32 @@
+{
+  "components": [
+    {
+      "values": [
+        {
+          "label": "Approximation",
+          "value": "approx"
+        },
+        {
+          "label": "Test",
+          "value": "test"
+        }
+      ],
+      "label": "Select Mode",
+      "type": "select",
+      "id": "Field_171wqgg",
+      "key": "mode",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 4,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "76cae4f"
+  },
+  "type": "default",
+  "id": "Form_4b4685fc-720d-44df-9a27-cf6d1f892b51",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "1.3"
+}

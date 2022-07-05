@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "label": "Weight",
+      "type": "number",
+      "id": "Field_0r6885f",
+      "key": "weight",
+      "description": "Weight of yourself",
+      "validate": {
+        "required": true,
+        "min": 40
+      },
+      "defaultValue": 60
+    },
+    {
+      "values": [
+        {
+          "label": "Male",
+          "value": "male"
+        },
+        {
+          "value": "women",
+          "label": "Female"
+        }
+      ],
+      "label": "Gender",
+      "type": "radio",
+      "id": "Field_057lyqp",
+      "key": "gender",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 4,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "76cae4f"
+  },
+  "type": "default",
+  "id": "Form_a75341c3-a271-4985-8b8f-ffe55292e6b2",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "1.3"
+}

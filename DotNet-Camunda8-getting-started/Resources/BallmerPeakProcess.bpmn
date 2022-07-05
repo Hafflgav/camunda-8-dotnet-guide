@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1g8ttvh" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <bpmn:collaboration id="Collaboration_1uea83w">
+    <bpmn:participant id="Participant_0g1oq71" name="Ballmer Peak Process" processRef="Ballmer_Peak_Process" />
+  </bpmn:collaboration>
+  <bpmn:process id="Ballmer_Peak_Process" name="Ballmer Peak Process" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_3o3tgse">{
+  "components": [
+    {
+      "values": [
+        {
+          "label": "Approximation",
+          "value": "approx"
+        },
+        {
+          "label": "Test",
+          "value": "test"
+        }
+      ],
+      "label": "Select Mode",
+      "type": "select",
+      "id": "Field_171wqgg",
+      "key": "mode",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 4,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "76cae4f"
+  },
+  "type": "default",
+  "id": "Form_4b4685fc-720d-44df-9a27-cf6d1f892b51",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "1.3"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_0d8rt63">{
+  "components": [
+    {
+      "label": "Weight",
+      "type": "number",
+      "id": "Field_0r6885f",
+      "key": "weight",
+      "description": "Weight of yourself",
+      "validate": {
+        "required": true,
+        "min": 40
+      },
+      "defaultValue": 60
+    },
+    {
+      "values": [
+        {
+          "label": "Male",
+          "value": "male"
+        },
+        {
+          "value": "women",
+          "label": "Female"
+        }
+      ],
+      "label": "Gender",
+      "type": "radio",
+      "id": "Field_057lyqp",
+      "key": "gender",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 4,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "76cae4f"
+  },
+  "type": "default",
+  "id": "Form_a75341c3-a271-4985-8b8f-ffe55292e6b2",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "1.3"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:exclusiveGateway id="Gateway_1vps6i3" name="Mode?">
+      <bpmn:incoming>Flow_1ixtmoe</bpmn:incoming>
+      <bpmn:outgoing>Flow_17bh9nc</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1e6ah1a</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_08elyad" name="Enter personal information">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_0d8rt63" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17bh9nc</bpmn:incoming>
+      <bpmn:outgoing>Flow_0stmx58</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0ts551h" name="Approximate alcoholic beverages needed">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="approx_bac" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0stmx58</bpmn:incoming>
+      <bpmn:outgoing>Flow_0w6n3r4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1fpvusp" name="Drink alcoholic beverages">
+      <bpmn:incoming>Flow_0w6n3r4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0s4dybz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0iskhhe">
+      <bpmn:incoming>Flow_1o66yu5</bpmn:incoming>
+      <bpmn:incoming>Flow_0s4dybz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ekvv4r</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_19xdqrw" name="Ballmer Peak reached">
+      <bpmn:incoming>Flow_0ekvv4r</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_1sqjcc2" name="Decide on mode">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_3o3tgse" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1q7zbpf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ixtmoe</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="Event_1csryld" name="Good code needs to be written">
+      <bpmn:outgoing>Flow_1q7zbpf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_06hhqmd" name="Drink alcoholic beverage">
+      <bpmn:incoming>Flow_1e6ah1a</bpmn:incoming>
+      <bpmn:incoming>Flow_080xts8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ooaki8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_03domrr" name="Run alcohol test">
+      <bpmn:incoming>Flow_0ooaki8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lcxt8k</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_190yxsj" name="Alcohol concentration &#60;1.29%?">
+      <bpmn:incoming>Flow_0lcxt8k</bpmn:incoming>
+      <bpmn:outgoing>Flow_080xts8</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1o66yu5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1q7zbpf" sourceRef="Event_1csryld" targetRef="Activity_1sqjcc2" />
+    <bpmn:sequenceFlow id="Flow_1ixtmoe" sourceRef="Activity_1sqjcc2" targetRef="Gateway_1vps6i3" />
+    <bpmn:sequenceFlow id="Flow_17bh9nc" name="using approximation" sourceRef="Gateway_1vps6i3" targetRef="Activity_08elyad">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">= mode = "approx"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1e6ah1a" name="using an alcohol test" sourceRef="Gateway_1vps6i3" targetRef="Activity_06hhqmd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">= mode = "test"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0stmx58" sourceRef="Activity_08elyad" targetRef="Activity_0ts551h" />
+    <bpmn:sequenceFlow id="Flow_0ooaki8" sourceRef="Activity_06hhqmd" targetRef="Activity_03domrr" />
+    <bpmn:sequenceFlow id="Flow_0lcxt8k" sourceRef="Activity_03domrr" targetRef="Gateway_190yxsj" />
+    <bpmn:sequenceFlow id="Flow_080xts8" name="yes" sourceRef="Gateway_190yxsj" targetRef="Activity_06hhqmd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">= bac &lt; 1.29</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1o66yu5" name="no" sourceRef="Gateway_190yxsj" targetRef="Gateway_0iskhhe">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">= bac &gt;= 1.29</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0w6n3r4" sourceRef="Activity_0ts551h" targetRef="Activity_1fpvusp" />
+    <bpmn:sequenceFlow id="Flow_0s4dybz" sourceRef="Activity_1fpvusp" targetRef="Gateway_0iskhhe" />
+    <bpmn:sequenceFlow id="Flow_0ekvv4r" sourceRef="Gateway_0iskhhe" targetRef="Event_19xdqrw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1uea83w">
+      <bpmndi:BPMNShape id="Participant_0g1oq71_di" bpmnElement="Participant_0g1oq71" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1040" height="330" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ekvv4r_di" bpmnElement="Flow_0ekvv4r">
+        <di:waypoint x="1095" y="170" />
+        <di:waypoint x="1142" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s4dybz_di" bpmnElement="Flow_0s4dybz">
+        <di:waypoint x="1000" y="170" />
+        <di:waypoint x="1045" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0w6n3r4_di" bpmnElement="Flow_0w6n3r4">
+        <di:waypoint x="850" y="170" />
+        <di:waypoint x="900" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o66yu5_di" bpmnElement="Flow_1o66yu5">
+        <di:waypoint x="975" y="290" />
+        <di:waypoint x="1070" y="290" />
+        <di:waypoint x="1070" y="195" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1016" y="272" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_080xts8_di" bpmnElement="Flow_080xts8">
+        <di:waypoint x="950" y="315" />
+        <di:waypoint x="950" y="390" />
+        <di:waypoint x="650" y="390" />
+        <di:waypoint x="650" y="330" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="791" y="372" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lcxt8k_di" bpmnElement="Flow_0lcxt8k">
+        <di:waypoint x="850" y="290" />
+        <di:waypoint x="925" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ooaki8_di" bpmnElement="Flow_0ooaki8">
+        <di:waypoint x="700" y="290" />
+        <di:waypoint x="750" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0stmx58_di" bpmnElement="Flow_0stmx58">
+        <di:waypoint x="700" y="170" />
+        <di:waypoint x="750" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e6ah1a_di" bpmnElement="Flow_1e6ah1a">
+        <di:waypoint x="490" y="195" />
+        <di:waypoint x="490" y="290" />
+        <di:waypoint x="600" y="290" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="500" y="256" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17bh9nc_di" bpmnElement="Flow_17bh9nc">
+        <di:waypoint x="515" y="170" />
+        <di:waypoint x="600" y="170" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="523" y="136" width="70" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ixtmoe_di" bpmnElement="Flow_1ixtmoe">
+        <di:waypoint x="420" y="170" />
+        <di:waypoint x="465" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q7zbpf_di" bpmnElement="Flow_1q7zbpf">
+        <di:waypoint x="278" y="170" />
+        <di:waypoint x="320" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Gateway_1vps6i3_di" bpmnElement="Gateway_1vps6i3" isMarkerVisible="true">
+        <dc:Bounds x="465" y="145" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="473" y="115" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10v4r8z_di" bpmnElement="Activity_08elyad">
+        <dc:Bounds x="600" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n9mjkc_di" bpmnElement="Activity_0ts551h">
+        <dc:Bounds x="750" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xpbzgx_di" bpmnElement="Activity_1fpvusp">
+        <dc:Bounds x="900" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0iskhhe_di" bpmnElement="Gateway_0iskhhe" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="145" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19xdqrw_di" bpmnElement="Event_19xdqrw">
+        <dc:Bounds x="1142" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1127" y="195" width="66" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ryjx98_di" bpmnElement="Activity_1sqjcc2">
+        <dc:Bounds x="320" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1csryld_di" bpmnElement="Event_1csryld">
+        <dc:Bounds x="242" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="217" y="195" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yl5y7g_di" bpmnElement="Activity_06hhqmd">
+        <dc:Bounds x="600" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11twkbr_di" bpmnElement="Activity_03domrr">
+        <dc:Bounds x="750" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_190yxsj_di" bpmnElement="Gateway_190yxsj" isMarkerVisible="true">
+        <dc:Bounds x="925" y="265" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="917" y="220" width="67" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

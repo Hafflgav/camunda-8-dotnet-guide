@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DotNet_Camunda8_getting_started</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="zb-client" />
+    <None Remove="Ressources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="zb-client" Version="1.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\blood-alcohol-approximator\blood-alcohol-approximator.csproj" />
+  </ItemGroup>
+</Project>

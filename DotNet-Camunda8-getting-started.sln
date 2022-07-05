@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.25
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "camunda-8-access-layer", "DotNet-Camunda8-getting-started\camunda-8-access-layer.csproj", "{2DB4F6D2-C100-427F-A40E-24FB1C4A28C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blood-alcohol-approximator", "blood-alcohol-approximator\blood-alcohol-approximator.csproj", "{A54DB7B8-B9F5-4F61-97C3-05789DBD8EA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-bac-approximator", "test-bac-approximator\test-bac-approximator.csproj", "{63798280-CFA3-485D-B0DF-F34CB019E26A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DB4F6D2-C100-427F-A40E-24FB1C4A28C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB4F6D2-C100-427F-A40E-24FB1C4A28C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB4F6D2-C100-427F-A40E-24FB1C4A28C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB4F6D2-C100-427F-A40E-24FB1C4A28C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54DB7B8-B9F5-4F61-97C3-05789DBD8EA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54DB7B8-B9F5-4F61-97C3-05789DBD8EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54DB7B8-B9F5-4F61-97C3-05789DBD8EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54DB7B8-B9F5-4F61-97C3-05789DBD8EA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63798280-CFA3-485D-B0DF-F34CB019E26A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63798280-CFA3-485D-B0DF-F34CB019E26A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63798280-CFA3-485D-B0DF-F34CB019E26A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63798280-CFA3-485D-B0DF-F34CB019E26A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B5B3483-E2B9-45BA-B888-7226275C9741}
+	EndGlobalSection
+EndGlobal
