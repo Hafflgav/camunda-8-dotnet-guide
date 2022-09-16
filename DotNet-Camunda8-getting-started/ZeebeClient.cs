@@ -15,9 +15,9 @@ namespace DotNet_Camunda8_getting_started
 {
     class ZeebeClient
     {
-        private static readonly String _ClientID = "rVVrLJud7wiOauvBlZByUzTZ-OzRrqF_";
-        private static readonly String _ClientSecret = "~Fdzr.WcuuxW4.6KT7_fXlG3IHzZVgLJo71JhmWYNbNYAYklxswegZHARTGb8Qiy";
-        private static readonly String _ContactPoint = "87eb1fb7-bc51-47b7-b09c-14d5e52cad95.bru-2.zeebe.camunda.io:443";
+        private static readonly String _ClientID = "vGMj5t5PK1LObVszf5mswW6QtFr5-xk6";
+        private static readonly String _ClientSecret = "TXNWoTDYqRRYbs7QUleD_HSEgKJ.TGNr3.6PJIrtzzpM~7LaACOeEdeViLd8AfBD";
+        private static readonly String _ContactPoint = "04322dc6-3d72-4d72-8dfc-484189a06927.bru-2.zeebe.camunda.io:443";
         private static readonly String _BpmnFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../Resources", "BallmerPeakProcess.bpmn");
         private static readonly String _JobType = "approx_bac"; 
 
@@ -33,8 +33,8 @@ namespace DotNet_Camunda8_getting_started
                                 .Build();
 
             // Deploy Process and start and Instance
-            long processDefinitionKey = await DeployProcess(_BpmnFile);
-            long processInstanceKey = await StartProcessInstance(processDefinitionKey);            
+            string bpmnProcessId = await DeployProcess(_BpmnFile);
+            long processInstanceKey = await StartProcessInstance(bpmnProcessId);            
 
             // Starting the Job Worker
             using (var signal = new EventWaitHandle(false, EventResetMode.AutoReset))
@@ -57,26 +57,28 @@ namespace DotNet_Camunda8_getting_started
         /// Deploying a BPMN Process Model to Camunda 8 SaaS
         /// </summary>
         /// <param name=processDefinitionKey">Key of the Process Definition</param>
-        private async static Task<long> DeployProcess(String bpmnFile)
+        private async static Task<string> DeployProcess(String bpmnFile)
         {
             var deployRespone = await zeebeClient.NewDeployCommand()
                 .AddResourceFile(bpmnFile)
                 .Send();
             Console.WriteLine("Process Definition has been deployed!");
 
-            var processDefinitionKey = deployRespone.Processes[0].ProcessDefinitionKey;
-            return processDefinitionKey;
+            var bpmnProcessId = deployRespone.Processes[0].BpmnProcessId;
+            return bpmnProcessId;
         }
 
         /// <summary>
         /// Starting a Process Instance on Camunda 8 SaaS
         /// </summary>
-        /// <param name=processDefinitionKey">Key of the Process Definition</param>
-        private async static Task<long> StartProcessInstance(long processDefinitionKey)
+        /// <param name=bpmnProcessId">Key of the Process Definition</param>
+        private async static Task<long> StartProcessInstance(string bpmnProcessId)
         {
             var processInstanceResponse = await zeebeClient.NewCreateProcessInstanceCommand()
-                .ProcessDefinitionKey(processDefinitionKey)
+                .BpmnProcessId(bpmnProcessId)
+                .LatestVersion()
                 .Send();
+              
             Console.WriteLine("Process Instance has been started!");
 
             var processInstanceKey = processInstanceResponse.ProcessInstanceKey;
